@@ -1,7 +1,7 @@
 const { connection, sql } = require('../config/db.config.js');
 
 const getBrandData = (req, res) => {
-    const sql = `select brandName from vehicle_db.brand_name`;
+    const sql = `select brand_name from vehicle_db.brand_info`;
     connection.query(sql, function (err, result) {
         if (err) {
             throw err;
@@ -15,7 +15,7 @@ const getBrandData = (req, res) => {
 
 const getBrandDataById = (req, res) => {
     const user_id = Number(req.params.id);
-    const sql = `select brandName from vehicle_db.brand_name where brand_id='${user_id}'`;
+    const sql = `select brand_name from vehicle_db.brand_info where brand_id='${user_id}'`;
     connection.query(sql, function (err, result) {
         if (err) {
             throw err;

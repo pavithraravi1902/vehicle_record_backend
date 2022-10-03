@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router()
+const router = express.Router();
 const {getVehicleData, getVehicleDataById, createVehicleData, updateVehicleData, deleteVehicleData} = require('../controller/vehicle_name_controller.js');
 
 router.get('/', getVehicleData);
