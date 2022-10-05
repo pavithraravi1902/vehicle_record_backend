@@ -27,6 +27,7 @@ const getVehicleDataById = (req, res) => {
     })
 }
 const createVehicleData = (req, res) => {
+   
     res.send({ message: "create data" })
 }
 
