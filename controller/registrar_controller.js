@@ -49,11 +49,8 @@ const createRegistrarData = (req, res) => {
 const updateRegistrarData = (req, res) => {
 
     const user_id = Number(req.params.id);
-    const { registrar_name, mobile_number, vehicle_name, brand_name, model_name, year, cost, description } = req.body;
-    const sql = `update vehicle_db.registered_record set registrar_name = '${registrar_name}', mobile_number = '${mobile_number}', vehicle_name = '${vehicle_name}', brand_name = '${brand_name}', model_name = '${model_name}', year = '${year}', cost = '${cost}', description = '${description}'  where record_id= ${user_id}`;
-    if (validationSchema.validate(req.body).error) {
-        res.send(validationSchema.validate(req.body).error.details);
-    } else {
+    const { record_id, registrar_name, mobile_number, vehicle_name, brand_name, model_name, year, cost, description } = req.body;
+    const sql = `update vehicle_db.registered_record set record_id = ${record_id}, registrar_name = '${registrar_name}', mobile_number = '${mobile_number}', vehicle_name = '${vehicle_name}', brand_name = '${brand_name}', model_name = '${model_name}', year = '${year}', cost = '${cost}', description = '${description}'  where record_id= ${user_id}`;
         connection.query(sql, (err, result) => {
             if (err) { console.log(err); }
             res.send({
@@ -61,7 +58,6 @@ const updateRegistrarData = (req, res) => {
                 data: result
             });
         });
-    }
 }
 
 const deleteRegistrarData = (req, res) => {
@@ -73,7 +69,8 @@ const deleteRegistrarData = (req, res) => {
         connection.query(sql, (err, result) => {
             if (err) { console.log(err); }
             res.send({
-                message: "data deleted"
+                message: "data deleted",
+                data: result
             });
         });
 }
