@@ -1,7 +1,7 @@
 const { connection, sql } = require('../config/db.config.js');
 
 const getData = (req, res) => {
-    const sql = `select model_id, model_name, year, cost, description, brand_id from vehicle_db.model_specification`;
+    const sql = `select modelId, modelName, year, cost, description, brandId from vehicle_db.model_specification`;
     connection.query(sql, function (err, result) {
         if (err) {
             throw err;
@@ -14,8 +14,8 @@ const getData = (req, res) => {
 }
 
 const getDataById = (req, res) => {
-    const user_id = Number(req.params.id);
-    const sql = `select model_id, model_name, year, cost, description from vehicle_db.model_specification where model_id=${user_id}`;
+    const userId = Number(req.params.id);
+    const sql = `select modelId, modelName, year, cost, description from vehicle_db.model_specification where modelId=${userId}`;
     connection.query(sql, function (err, result) {
         if (err) {
             throw err;
@@ -27,8 +27,8 @@ const getDataById = (req, res) => {
     })
 }
 const createData = (req, res) => {
-    const { model_name, year, cost, description } = req.body;
-    const sql = `insert into vehicle_db.model_specification(model_name, year, cost, description) values ('${model_name}', ${year}, ${cost}, '${description}')`;
+    const { modelName, year, cost, description } = req.body;
+    const sql = `insert into vehicle_db.model_specification(modelName, year, cost, description) values ('${modelName}', ${year}, ${cost}, '${description}')`;
     connection.query(sql, function (err, result) {
         if (err) {
             throw err;

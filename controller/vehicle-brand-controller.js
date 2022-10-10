@@ -1,7 +1,7 @@
 const { connection, sql } = require('../config/db.config.js');
 
-const getVehicleData = (req, res) => {
-    const sql = `select vehicle_id, vehicle_name from vehicle_db.vehicle_info`;
+const getBrandData = (req, res) => {
+    const sql = `select brandId, brandName, vehicleId from vehicle_db.brand_info`;
     connection.query(sql, function (err, result) {
         if (err) {
             throw err;
@@ -13,9 +13,9 @@ const getVehicleData = (req, res) => {
     });
 }
 
-const getVehicleDataById = (req, res) => {
-    const user_id = Number(req.params.id);
-    const sql = `select vehicle_id, vehicle_name from vehicle_db.vehicle_info where vehicle_id=${user_id}`;
+const getBrandDataById = (req, res) => {
+    const userId = Number(req.params.id);
+    const sql = `select brandId, brandName, vehicleId from vehicle_db.brand_info where brandId='${userId}'`;
     connection.query(sql, function (err, result) {
         if (err) {
             throw err;
@@ -26,16 +26,16 @@ const getVehicleDataById = (req, res) => {
         })
     })
 }
-const createVehicleData = (req, res) => {
-   
+const createBrandData = (req, res) => {
+    const {brandName} =req.body;
     res.send({ message: "create data" })
 }
 
-const updateVehicleData = (req, res) => {
+const updateBrandData = (req, res) => {
     res.send({ message: "update data" });
 }
 
-const deleteVehicleData = (req, res) => {
+const deleteBrandData = (req, res) => {
     res.send({ message: "Delete Data" });
 }
-module.exports = { getVehicleData, getVehicleDataById, createVehicleData, updateVehicleData, deleteVehicleData };
+module.exports = { getBrandData, getBrandDataById, createBrandData, updateBrandData, deleteBrandData };

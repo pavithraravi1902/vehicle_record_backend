@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {getBrandData, getBrandDataById, createBrandData, updateBrandData, deleteBrandData} = require('../controller/vehicle_brand_controller.js');
+const {getBrandData, getBrandDataById, createBrandData, updateBrandData, deleteBrandData} = require('../controller/vehicle-brand-controller.js');
 
 router.get('/', getBrandData);
 

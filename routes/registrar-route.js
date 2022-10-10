@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {getRegistrarData, getRegistrarDataById, createRegistrarData, updateRegistrarData, deleteRegistrarData} = require('../controller/registrar_controller.js');
+const {getRegistrarData, getRegistrarDataById, createRegistrarData, updateRegistrarData, deleteRegistrarData} = require('../controller/registrar-controller.js');
 
 router.get('/', getRegistrarData);
 

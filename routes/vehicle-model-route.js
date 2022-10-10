@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router()
-const {getData, getDataById, createData, updateData, deleteData} = require('../controller/vehicle_model_controller.js');
+const {getData, getDataById, createData, updateData, deleteData} = require('../controller/vehicle-model-controller.js');
 
 router.get('/', getData);
 
