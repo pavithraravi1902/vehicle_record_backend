@@ -1,16 +1,16 @@
 const Joi = require('joi');
 const validationSchema = Joi.object({
-    registrar_name: Joi.string().required(),
-    mobile_number: Joi.string().required(),
-    vehicle_name: Joi.string().required(),
-    brand_name: Joi.string().required(),
-    model_name: Joi.string().required(),
+    registrarName: Joi.string().required(),
+    mobileNumber: Joi.string().required(),
+    vehicleName: Joi.string().required(),
+    brandName: Joi.string().required(),
+    modelName: Joi.string().required(),
     year: Joi.number().required(),
     cost: Joi.number().required(),
     description: Joi.string().required()
 });
 
 const validateDelete = Joi.object({
-    record_id: Joi.number().required(),
+    recordId: Joi.number().required(),
 });
 module.exports = {validationSchema, validateDelete};
