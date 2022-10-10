@@ -1,8 +1,8 @@
 const { connection, sql } = require('../config/db.config.js');
-const { validationSchema, validateDelete } = require('../validation/registrar_validation.js')
+const { validationSchema } = require('../validation/registrar_validation.js')
 
 const getRegistrarData = (req, res) => {
-    const sql = `select record_id, registrar_name, mobile_number, vehicle_name, brand_name, model_name, year, cost, description from vehicle_db.registered_record`;
+    const sql = `select recordId, registrarName, mobileNumber, vehicleName, brandName, modelName, year, cost, description from vehicle_db.registered_record`;
     connection.query(sql, function (err, result) {
         if (err) {
             throw err;
@@ -15,8 +15,8 @@ const getRegistrarData = (req, res) => {
 }
 
 const getRegistrarDataById = (req, res) => {
-    const user_id = Number(req.params.id);
-    const sql = `select record_id, registrar_name, mobile_number, vehicle_name, brand_name, model_name, year, cost, description from vehicle_db.registered_record where record_id=${user_id}`;
+    const userId = Number(req.params.id);
+    const sql = `select recordId, registrarName, mobileNumber, vehicleName, brandName, modelName, year, cost, description from vehicle_db.registered_record where recordId=${userId}`;
     connection.query(sql, function (err, result) {
         if (err) {
             throw err;
@@ -29,8 +29,8 @@ const getRegistrarDataById = (req, res) => {
 }
 
 const createRegistrarData = (req, res) => {
-    const { registrar_name, mobile_number, vehicle_name, brand_name, model_name, year, cost, description } = req.body;
-    const sql = `insert into vehicle_db.registered_record (registrar_name, mobile_number, vehicle_name, brand_name, model_name, year, cost, description) values ('${registrar_name}', '${mobile_number}', '${vehicle_name}', '${brand_name}', '${model_name}', ${year}, ${cost}, '${description}')`
+    const { registrarName, mobileNumber, vehicleName, brandName, modelName, year, cost, description } = req.body;
+    const sql = `insert into vehicle_db.registered_record (registrarName, mobileNumber, vehicleName, brandName, modelName, year, cost, description) values ('${registrarName}', '${mobileNumber}', '${vehicleName}', '${brandName}', '${modelName}', ${year}, ${cost}, '${description}')`
     if (validationSchema.validate(req.body).error) {
         res.send(validationSchema.validate(req.body).error.details);
     } else {
@@ -48,9 +48,9 @@ const createRegistrarData = (req, res) => {
 
 const updateRegistrarData = (req, res) => {
 
-    const user_id = Number(req.params.id);
-    const { record_id, registrar_name, mobile_number, vehicle_name, brand_name, model_name, year, cost, description } = req.body;
-    const sql = `update vehicle_db.registered_record set record_id = ${record_id}, registrar_name = '${registrar_name}', mobile_number = '${mobile_number}', vehicle_name = '${vehicle_name}', brand_name = '${brand_name}', model_name = '${model_name}', year = '${year}', cost = '${cost}', description = '${description}'  where record_id= ${user_id}`;
+    const userId = Number(req.params.id);
+    const { recordId, registrarName, mobileNumber, vehicleName, brandName, modelName, year, cost, description } = req.body;
+    const sql = `update vehicle_db.registered_record set recordId = ${recordId}, registrarName = '${registrarName}', mobileNumber = '${mobileNumber}', vehicleName = '${vehicleName}', brandName = '${brandName}', modelName = '${modelName}', year = '${year}', cost = '${cost}', description = '${description}'  where recordId= ${userId}`;
         connection.query(sql, (err, result) => {
             if (err) { console.log(err); }
             res.send({
@@ -61,8 +61,8 @@ const updateRegistrarData = (req, res) => {
 }
 
 const deleteRegistrarData = (req, res) => {
-    const user_id = Number(req.params.id);
-    const sql = `delete from vehicle_db.registered_record where record_id = ${user_id}`;
+    const userId = Number(req.params.id);
+    const sql = `delete from vehicle_db.registered_record where recordId = ${userId}`;
     /*****  if (validateDelete.validate(req.body).error) {
         res.send(validateDelete.validate(req.body).error.details);
     } else {} ****/
