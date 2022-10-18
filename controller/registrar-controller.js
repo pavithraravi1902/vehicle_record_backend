@@ -1,5 +1,5 @@
 const { connection, sql } = require('../config/db.config.js');
-const { validationSchema } = require('../validation/registrar_validation.js')
+const { validationSchema } = require('../validation/registrar-validation.js')
 
 const getRegistrarData = (req, res) => {
     const sql = `select recordId, registrarName, mobileNumber, vehicleName, brandName, modelName, year, cost, description from vehicle_db.registered_record`;
